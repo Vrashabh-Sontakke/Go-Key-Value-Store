@@ -8,11 +8,13 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// store represents a synchronized key-value store.
 var store = struct {
 	sync.RWMutex
 	m map[string]string
 }{m: make(map[string]string)}
 
+// setHandler handles the HTTP POST request to set key-value pairs in the store.
 func setHandler(w http.ResponseWriter, r *http.Request) {
 	key := r.FormValue("key")
 	value := r.FormValue("value")
@@ -22,6 +24,7 @@ func setHandler(w http.ResponseWriter, r *http.Request) {
 	store.Unlock()
 }
 
+// getHandler handles the HTTP GET request to retrieve a value by key from the store.
 func getHandler(w http.ResponseWriter, r *http.Request) {
 	key := mux.Vars(r)["key"]
 
@@ -32,6 +35,7 @@ func getHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(value))
 }
 
+// searchHandler handles the HTTP GET request to search for keys with a given prefix and suffix.
 func searchHandler(w http.ResponseWriter, r *http.Request) {
 	prefix := r.URL.Query().Get("prefix")
 	suffix := r.URL.Query().Get("suffix")
