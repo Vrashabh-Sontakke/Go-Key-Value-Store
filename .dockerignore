@@ -1,0 +1,7 @@
+.git
+.idea/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
