@@ -50,11 +50,20 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// health check handler
+func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
+}
+
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/set", setHandler).Methods("POST")
 	r.HandleFunc("/get/{key}", getHandler).Methods("GET")
 	r.HandleFunc("/search", searchHandler).Methods("GET")
+
+	r.HandleFunc("/healthCheck", healthCheckHandler).Methods("GET")
+
 	http.Handle("/", r)
 
 	http.ListenAndServe(":8080", nil)
