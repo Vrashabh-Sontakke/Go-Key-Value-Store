@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kvstore-deployment
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: kvstore
+  template:
+    metadata:
+      labels:
+        app: kvstore
+    spec:
+      containers:
+      - name: kvstore
+        image: vrash/kvstore:latest
+        ports:
+        - containerPort: 8080
+        readinessProbe:  
+          httpGet:
+            path: /healthCheck
+            port: 8080
+          initialDelaySeconds: 5  
+          periodSeconds: 10      
