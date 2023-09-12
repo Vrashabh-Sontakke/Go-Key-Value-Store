@@ -4,7 +4,7 @@ metadata:
   name: kvstore-ingress
 spec:
   rules:
-  - host: your-hostname.com  # Replace with your desired hostname
+  - host: kvstore.com
     http:
       paths:
       - path: /

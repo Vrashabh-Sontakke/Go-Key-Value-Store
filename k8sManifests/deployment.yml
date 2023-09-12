@@ -18,8 +18,9 @@ spec:
         app: kvstore
     spec:
       containers:
-      - name: kvstore
-        image: vrash/kvstore:latest
+      - name: kvstore-container
+        image: kvstore:0.1
+        #imagePullPolicy: Never
         ports:
         - containerPort: 8080
         readinessProbe:  
