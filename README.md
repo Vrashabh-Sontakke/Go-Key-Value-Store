@@ -1,5 +1,5 @@
 # Go Key Value Store
- A simple In-Memory Key Value Store HTTP API Service with Golang.
+ A simple In-Memory Key Value Store HTTP API Service using Golang.
 
 ## How to Run :
 
