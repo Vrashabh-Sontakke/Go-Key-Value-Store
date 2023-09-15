@@ -9,9 +9,14 @@ Depending on the option you choose below; `Go binary`, `Docker` or `Kind` must b
 #### Example http API test usage:
 
 `curl -X POST -d "key=abc-1" -d "value=value1" http://localhost:8080/set`
+
 `curl "http://localhost:8080/get/abc-1"`
+
 `curl "http://localhost:8080/search?prefix=a"`
+
 `curl "http://localhost:8080/get/search?suffix=1"`
+
+Prometheus Metrics: `curl "http://localhost:8080/metrics"`
 
 ### Option - 1 : Local (no-docker) : 
 
@@ -32,8 +37,9 @@ docker run -d -p 8080:8080 kvstore
 ### Option - 3 : Kind (Local Kubernetes Cluster)
 
 #### Build a Docker Image : 
-##### Remember, give the Docker Image a specific tag, for example `kvstore:0.1` in this case (required to work with kind).
-
+- Remember ! Give the Docker Image a specific tag, for example `kvstore:0.1` in this case (required to work with kind).
+- alternatively, you can Push the Docker Image to a Registry (Online/Offline), just make make sure to update it in `/k8sManifests/kvstore.yml` file.
+##### switch to `/app` directory & run >>>
 ```
 docker build -t kvstore:0.1 .
 ```
@@ -50,7 +56,7 @@ kind load docker-image kvstore:0.1
 #### Apply Kubernetes Configuration ...
 
 
-##### switch to `k8sManifests` directory & run >>>
+##### switch to `/k8sManifests` directory & run >>>
 ```
 kubectl apply -f kvstore.yml
 ```
@@ -86,4 +92,6 @@ go test
 #####Check Test Coverage : 
 ```
 go test -cover
+
+
 ```
