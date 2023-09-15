@@ -43,11 +43,11 @@ docker run -d -p 8080:8080 kvstore
 ```
 docker build -t kvstore:0.1 .
 ```
-#### Create kind cluster
+#### Create kind cluster ...
 ```
 kind create cluster
 ```
-#### Load the Docker Image into Kind
+#### Load the Docker Image into Kind ...
 ```
 kind load docker-image kvstore:0.1
 ```
