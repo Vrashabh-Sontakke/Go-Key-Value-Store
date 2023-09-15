@@ -3,10 +3,10 @@
 
 ## How to Run :
 
-#### Requirements: 
+### Requirements: 
 Depending on the option you choose below; `Go binary`, `Docker` or `Kind` must be installed on the machine.
 
-#### Example http API test usage:
+### Example http API test usage:
 
 `curl -X POST -d "key=abc-1" -d "value=value1" http://localhost:8080/set`
 
