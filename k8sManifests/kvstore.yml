@@ -29,3 +29,32 @@ spec:
             port: 8080
           initialDelaySeconds: 5  
           periodSeconds: 10      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kvstore-service
+spec:
+  selector:
+    app: kvstore
+  ports:
+    - protocol: TCP
+      port: 8080   
+      targetPort: 8080  
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kvstore-ingress
+spec:
+  rules:
+  - host: kvstore.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kvstore-service
+            port:
+              number: 8080
