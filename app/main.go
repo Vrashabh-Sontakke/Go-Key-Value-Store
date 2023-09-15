@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 	"strings"
 	"sync"
@@ -145,8 +147,12 @@ func main() {
 		}
 	}()
 
+	fmt.Println("Server is listening on :8080...")
+
 	// Expose Prometheus metrics on /metrics endpoint
 	http.Handle("/metrics", promhttp.Handler())
 
-	http.ListenAndServe(":8080", nil)
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal(err)
+	}
 }
