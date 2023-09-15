@@ -1,4 +1,4 @@
-# kvstore
+# Go Key Value Store
  A simple In-Memory Key Value Store HTTP API Service with Golang.
 
 ## How to Run :
